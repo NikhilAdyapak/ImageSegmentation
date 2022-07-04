@@ -77,14 +77,14 @@ class_names = ['BG', 'person', 'bicycle', 'car', 'motorcycle', 'airplane',
 
                # Load a random image from the images folder
 file_names = next(os.walk(IMAGE_DIR))[2]
-image = skimage.io.imread(os.path.join(IMAGE_DIR, random.choice(file_names)))
+# image = skimage.io.imread(os.path.join(IMAGE_DIR, random.choice(file_names)))
 # image = skimage.io.imread('/home/yln1kor/nikhil-test/cycle.jpg')
 # Run detection
 # print([image])
-results = model.detect([image], verbose=1)
+# results = model.detect([image], verbose=1)
 # print(results)
 # Visualize results
-r = results[0]
+# r = results[0]
 # print(r['rois'])
 # color = (255,0,0)
 # thickness = 2
@@ -97,9 +97,15 @@ r = results[0]
 # cv2.imshow('img',image)
 # cv2.waitKey(0)
 # print(r['rois'], r['masks'], r['class_ids'], class_names, r['scores'])
-print(r['masks'])
-visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'], class_names, r['scores'])
+# print(r['masks'])
+# visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'], class_names, r['scores'])
 # print(img)
 # print('rois',r['rois'],'\n','masks', r['masks'],'\n','class_ids' ,r['class_ids'],'\n','class_names', class_names,'\n','scores' ,r['scores'])
 # cv2.imshow('img',img)
 # cv2.waitKey(0)
+
+for i in range(10):
+    image = skimage.io.imread(os.path.join(IMAGE_DIR, random.choice(file_names)))
+    results = model.detect([image], verbose=1)
+    r = results[0]
+    visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'], class_names, r['scores'])
