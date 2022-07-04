@@ -1,4 +1,4 @@
 # Image Segmentation Models
 
-## 	Mask RCNN
-## 	Detectron 2
+     Mask RCNN
+     Detectron 2
