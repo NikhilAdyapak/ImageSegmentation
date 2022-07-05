@@ -45,8 +45,11 @@ outputs = predictor(im)
 print(outputs["instances"].pred_classes)
 print(outputs["instances"].pred_boxes)
 
+pred = [0,2]
 v = Visualizer(im[:, :, ::-1], MetadataCatalog.get(cfg.DATASETS.TRAIN[0]), scale=1.2)
-out = v.draw_instance_predictions(outputs["instances"].to("cpu"))
+for i in pred:
+    out = v.draw_instance_predictions(outputs["instances"][outputs['instances'].pred_classes == i].to("cpu"))
+# out = v.draw_instance_predictions(outputs["instances"][outputs['instances'].pred_classes == 0].to("cpu"))
 # cv2.imshow(out.get_image()[:, :, ::-1])
 cv2.imshow("output",out.get_image())
 cv2.waitKey(0)

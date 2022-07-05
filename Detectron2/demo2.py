@@ -36,18 +36,23 @@ cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-InstanceSegmentation/mask
 predictor = DefaultPredictor(cfg)
 
 
-for i in range(1,236):
-    #out_path = '/home/yln1kor/nikhil-test/Detectron2/output/img' + str(i) + '.png'
-    img = '/home/yln1kor/nikhil-test/archive/Test/Test/JPEGImages/image (' + str(i) + ').jpg'
+# for i in range(1,236):
+for i in range(10):
+    # img = '/home/yln1kor/nikhil-test/archive/Test/Test/JPEGImages/image (' + str(i) + ').jpg'
+    out_path = '/home/yln1kor/nikhil-test/Detectron2/output/img' + str(i) + '.png'
+    img = '/home/yln1kor/nikhil-test/Detectron2/input/00000' + str(i) + '.png'
     im = cv2.imread(img)
     outputs = predictor(im)
-    # print(outputs["instances"].pred_classes)
+
+    print(outputs["instances"].pred_classes)
     # print(outputs["instances"].pred_boxes)
 
+    pred = [0,2]
     v = Visualizer(im[:, :, ::-1], MetadataCatalog.get(cfg.DATASETS.TRAIN[0]), scale=1.2)
-    out = v.draw_instance_predictions(outputs["instances"].to("cpu"))
+    for i in pred:
+        out = v.draw_instance_predictions(outputs["instances"][outputs['instances'].pred_classes == i].to("cpu"))
     # cv2.imshow(out.get_image()[:, :, ::-1])
-    cv2.imshow("output",out.get_image())
-    cv2.waitKey(0)
-    #opimg = out.get_image()
-    #cv2.imwrite(out_path,opimg)
+    # cv2.imshow("output",out.get_image())
+    # cv2.waitKey(0)
+    opimg = out.get_image()
+    cv2.imwrite(out_path,opimg)
