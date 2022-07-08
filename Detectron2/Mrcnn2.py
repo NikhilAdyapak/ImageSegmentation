@@ -37,15 +37,10 @@ predictor = DefaultPredictor(cfg)
 
 
 for i in range(1,10):
-# for i in range(10):
     img = '/home/yln1kor/nikhil-test/archive/Test/Test/JPEGImages/image (' + str(i) + ').jpg'
-    # out_path = '/home/yln1kor/nikhil-test/Detectron2/output/img' + str(i) + '.png'
-    # img = '/home/yln1kor/nikhil-test/Detectron2/input/00000' + str(i) + '.png'
     im = cv2.imread(img)
     outputs = predictor(im)
 
-    # print(outputs["instances"].pred_classes)
-    # print(outputs["instances"].pred_boxes)
     print('\n\n')
     print(i)
     pred = [0,2]
@@ -53,17 +48,9 @@ for i in range(1,10):
     out_boxes = []
     for j in pred:
         out = v.draw_instance_predictions(outputs["instances"][outputs['instances'].pred_classes == j].to("cpu"))
-    #     box = outputs["instances"][outputs['instances'].pred_classes == i].pred_boxes
-    #     # print(type(box))
-    #     out_boxes.append(box)
-    # print(out_boxes[0][0])
         boxes = v._convert_boxes(outputs["instances"][outputs['instances'].pred_classes == j].pred_boxes.to('cpu'))
         for box in boxes:
             box = [round(box[0]), round(box[1]), round(box[2]) , round(box[3])]
             print(box)
-            # out = v.draw_text(f"{box[2:4]}", (box[0], box[1]))
-    # cv2.imshow(out.get_image()[:, :, ::-1])
     cv2.imshow("output",out.get_image())
     cv2.waitKey(0)
-    # opimg = out.get_image()
-    # cv2.imwrite(out_path,opimg)
