@@ -45,7 +45,6 @@ for i in range(1,10):
     print(i)
     pred = [0,2]
     v = Visualizer(im[:, :, ::-1], MetadataCatalog.get(cfg.DATASETS.TRAIN[0]), scale=1.2)
-    out_boxes = []
     for j in pred:
         out = v.draw_instance_predictions(outputs["instances"][outputs['instances'].pred_classes == j].to("cpu"))
         boxes = v._convert_boxes(outputs["instances"][outputs['instances'].pred_classes == j].pred_boxes.to('cpu'))
