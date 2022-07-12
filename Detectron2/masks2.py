@@ -95,6 +95,7 @@ for imageName in sorted(glob.glob(os.path.join(path_images, '*.png'))):
         # cv2.waitKey(0)
         pred_mask_persons = np.logical_or(pred_mask_persons,j)
     im_predmasks_persons.append(pred_mask_persons)
+    cv2.imshow('image', im)
     cv2.imshow('pred_mask', pred_mask_cars.astype(np.uint8)*255)
     cv2.imshow('gt',gt_masks_cars[it].astype(np.uint8)*255)
     cv2.waitKey(0)
