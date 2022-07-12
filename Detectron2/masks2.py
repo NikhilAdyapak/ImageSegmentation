@@ -85,17 +85,22 @@ for imageName in sorted(glob.glob(os.path.join(path_images, '*.png'))):
     # print(pred_mask)
     # print(out[0].shape)
     for j in out_cars:
-    #     cv2.imshow('mask',j.astype(np.uint8)*255)
-    #     cv2.waitKey(0)
+        # cv2.imshow('mask',j.astype(np.uint8)*255)
+        # cv2.waitKey(0)
         pred_mask_cars = np.logical_or(pred_mask_cars,j)
     im_predmasks_cars.append(pred_mask_cars)
 
     for j in out_persons:
+        # cv2.imshow('mask',j.astype(np.uint8)*255)
+        # cv2.waitKey(0)
         pred_mask_persons = np.logical_or(pred_mask_persons,j)
     im_predmasks_persons.append(pred_mask_persons)
-    # cv2.imshow('pred_mask', pred_mask.astype(np.uint8)*255)
-    # cv2.imshow('gt',gt_masks[it].astype(np.uint8)*255)
-    # cv2.waitKey(0)
+    cv2.imshow('pred_mask', pred_mask_cars.astype(np.uint8)*255)
+    cv2.imshow('gt',gt_masks_cars[it].astype(np.uint8)*255)
+    cv2.waitKey(0)
+    cv2.imshow('pred_mask', pred_mask_persons.astype(np.uint8)*255)
+    cv2.imshow('gt',gt_masks_persons[it].astype(np.uint8)*255)
+    cv2.waitKey(0)
     it += 1
     if c == 10:
         break
