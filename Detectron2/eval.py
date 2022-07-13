@@ -3,8 +3,10 @@ def Maskgen_model(outputs, ind):
     out = out.numpy()
 
     pred_mask = np.full(out[0].shape,False, dtype =bool)
+
     for j in out:
         pred_mask = np.logical_or(pred_mask,j)
+
     return(pred_mask)
 
 def Maskgen(image, color_code):
