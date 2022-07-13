@@ -1,7 +1,6 @@
 def Maskgen_model(outputs, ind):
     out = outputs["instances"][outputs["instances"].pred_classes == ind].pred_masks.to('cpu')
     out = out.numpy()
-
     pred_mask = np.full(out[0].shape,False, dtype =bool)
 
     for j in out:
