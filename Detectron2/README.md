@@ -14,5 +14,3 @@
     
     Version used locally (Cuda 11.7) - 
     python3 -m pip install detectron2==0.6 -f   https://dl.fbaipublicfiles.com/detectron2/wheels/cu102/torch1.10/index.html
-    
-    
